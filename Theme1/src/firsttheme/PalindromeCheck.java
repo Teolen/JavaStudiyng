@@ -1,8 +1,10 @@
+package firsttheme;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PalindromeCheck {
-    private static Pattern pattern = Pattern.compile("\\W");
+    private static final Pattern pattern = Pattern.compile("\\W");
     private static Matcher matcher;
     public static int countOfPalindromes(String strings) {
         int retval = 0;
@@ -20,7 +22,7 @@ public class PalindromeCheck {
         }
         return retval;
     }
-    public static boolean isPalindrome(String str) {
+    private static boolean isPalindrome(String str) {
         matcher = pattern.matcher(str);
         if (matcher.find()) return false;
         char[] chars = str.toCharArray();

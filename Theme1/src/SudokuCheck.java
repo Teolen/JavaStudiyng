@@ -1,6 +1,3 @@
-import java.util.Arrays;
-import java.util.List;
-
 public class SudokuCheck {
     public static boolean sudokuChecker(int[][] sudoku) {
         int[] tmp = new int[9];
@@ -17,7 +14,6 @@ public class SudokuCheck {
             for (int j = 0; j < 9; j++) {
                 tmp[j] = sudoku[j][i];
             }
-            for(int num : tmp)
             if (!lineChecker(tmp)) return false;
         }
 

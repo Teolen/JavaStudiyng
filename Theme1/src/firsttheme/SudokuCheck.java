@@ -1,3 +1,5 @@
+package firsttheme;
+
 public class SudokuCheck {
     public static boolean sudokuChecker(int[][] sudoku) {
         int[] tmp = new int[9];
@@ -37,7 +39,6 @@ public class SudokuCheck {
     }
 
     public static void main(String[] args) {
-        //int[][] sudoku3 = {{3,0,2},{3,1,0},{0,2,3}};
         int[][] sudoku9 = { {5,3,0,0,7,0,0,0,0},
                             {6,0,0,1,9,5,0,0,0},
                             {0,9,8,0,0,0,0,6,0},
@@ -53,17 +54,18 @@ public class SudokuCheck {
 //                System.out.print(num + ", ");
 //            System.out.println();
 //        }
-        System.out.println("------------------------------");
-        for(int i = 0; i < 9; i++) {
-
-            System.out.print("|");
-            for(int j = 0; j < 9; j++) {
-                System.out.print(sudoku9[i][j]);
-                if ((j+1)%3 == 0) System.out.print(" | ");
-                        else System.out.print(", ");
-            }
-            System.out.println();
-            if ((i+1)%3 == 0) System.out.println("------------------------------");
-        }
+//        System.out.println("------------------------------");
+//        for(int i = 0; i < 9; i++) {
+//
+//            System.out.print("|");
+//            for(int j = 0; j < 9; j++) {
+//                System.out.print(sudoku9[i][j]);
+//                if ((j+1)%3 == 0) System.out.print(" | ");
+//                else System.out.print(", ");
+//            }
+//            System.out.println();
+//            if ((i+1)%3 == 0) System.out.println("------------------------------");
+//        }
     }
 }
+

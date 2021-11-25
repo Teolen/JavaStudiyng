@@ -28,12 +28,14 @@ public class SudokuCheckTest {
         actual.add(sudokuChecker(sudoku));
         sudoku[0][0] = 8;
         actual.add(sudokuChecker(sudoku));
-        sudoku[0][0] = 1; sudoku[2][4] = 5;
+        sudoku[0][0] = 1;
+        sudoku[2][4] = 5;
         actual.add(sudokuChecker(sudoku));
         sudoku[2][4] = 4;
         actual.add(sudokuChecker(sudoku));
         assertEquals(expected, actual);
     }
+
     @Test(expected = IllegalArgumentException.class)
     public void sudokuCheckerIllegalTest() {
         // 10 rows
@@ -49,6 +51,7 @@ public class SudokuCheckTest {
                             {5,2,0,0,0,1,8,0,0}};
         sudokuChecker(sudoku);
     }
+
     @Test(expected = NullPointerException.class)
     public void sudokuCheckerNullTest() {
         sudokuChecker(null);

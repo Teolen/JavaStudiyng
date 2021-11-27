@@ -39,25 +39,6 @@ class Solution {
             return dRight + 1;
         }
     }
-
-    public static void main(String[] args) {
-        // [3,9,20,null,null,15,7]
-        TreeNode root1 =
-                new TreeNode(3,
-                new TreeNode(9,null,null),
-                new TreeNode(20,new TreeNode(15),new TreeNode(7)));
-        System.out.println(maxDepth(root1));
-        // [1,null,2]
-        TreeNode root2 =
-                new TreeNode(1,null,new TreeNode(2));
-        System.out.println(maxDepth(root2));
-        // []
-        TreeNode root3 = null;
-        System.out.println(maxDepth(root3));
-        // [0]
-        TreeNode root4 = new TreeNode(0);
-        System.out.println(maxDepth(root4));
-    }
 }
 
 

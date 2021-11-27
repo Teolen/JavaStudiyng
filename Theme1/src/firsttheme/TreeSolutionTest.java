@@ -8,9 +8,9 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-import static firsttheme.Solution.*;
+import static firsttheme.TreeSolution.*;
 
-public class SolutionTest {
+public class TreeSolutionTest {
 
     @Test
     public void maxDepthTest() {

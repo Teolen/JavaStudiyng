@@ -19,7 +19,7 @@ public class TreeNode {
     }
 }
 
-class Solution {
+class TreeSolution {
     public static int maxDepth(TreeNode root) {
         if(root == null) {
             return 0;

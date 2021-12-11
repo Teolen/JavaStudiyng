@@ -2,9 +2,10 @@ package firsttheme;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.Assert.*;
 
@@ -19,11 +20,10 @@ public class PalindromeCheckTest {
                             "abba olma quebec 3223 .",
                             "; .'. ;[]; 3223 .",
                             ""};
-        List<Integer> expected = Arrays.asList(3,2,1,0);
-        List<Integer> actual = new ArrayList<>();
-        for(String str : strArr) {
-            actual.add(countOfPalindromes(str));
-        }
+        List<Long> expected = Arrays.asList(3L,2L,1L,0L);
+        List<Long> actual = Stream.of(strArr).
+                map(PalindromeCheck::countOfPalindromes).
+                collect(Collectors.toList());
 
         assertEquals(expected, actual);
     }

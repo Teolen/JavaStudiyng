@@ -2,9 +2,10 @@ package firsttheme;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static firsttheme.PrefixFinder.*;
 
@@ -20,9 +21,9 @@ public class PrefixFinderTest {
                 {"hyperextension"},
                 {}};
         List<String> expected = Arrays.asList("fl","","cat","hyperextension","");
-        List<String> actual = new ArrayList<>();
-        for(String[] strArr : testStrings)
-            actual.add(findAPrefix(strArr));
+        List<String> actual = Stream.of(testStrings)
+                .map(PrefixFinder::findAPrefix)
+                .collect(Collectors.toList());
         assertEquals(expected, actual);
     }
 

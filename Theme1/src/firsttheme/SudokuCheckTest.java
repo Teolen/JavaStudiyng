@@ -23,16 +23,19 @@ public class SudokuCheckTest {
                             {0,6,0,0,0,0,2,8,0},
                             {0,0,0,4,1,9,0,0,5},
                             {0,0,0,0,8,0,0,7,9}};
-        List<Boolean> expected = Arrays.asList(true, false, false,true);
+        List<Boolean> expected = Arrays.asList(true, false, false, false);
         List<Boolean> actual = new ArrayList<>();
         actual.add(sudokuChecker(sudoku));
-        sudoku[0][0] = 8;
+        sudoku[4][4] = 4;
         actual.add(sudokuChecker(sudoku));
-        sudoku[0][0] = 1;
+        sudoku[4][4] = 0;
+        sudoku[0][0] = 4;
+        actual.add(sudokuChecker(sudoku));
+        sudoku[0][0] = 5;
         sudoku[2][4] = 5;
         actual.add(sudokuChecker(sudoku));
-        sudoku[2][4] = 4;
-        actual.add(sudokuChecker(sudoku));
+        sudoku[2][4] = 9;
+
         assertEquals(expected, actual);
     }
 

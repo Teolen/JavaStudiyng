@@ -1,46 +1,47 @@
 package firsttheme;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class SudokuCheck {
 
     public static boolean sudokuChecker(int[][] sudoku) {
-        int[] tmp = new int[9];
+
         if (sudoku.length != 9) {
             throw new IllegalArgumentException("wrong size of sudoku");
         }
-        for(int[] sudokuRow : sudoku) {
-            if(sudokuRow.length != 9) {
-                throw new IllegalArgumentException("wrong size of sudoku");
-            }
+
+        if (Stream.of(sudoku).anyMatch(s -> s.length != 9)) {
+            throw new IllegalArgumentException("wrong size of sudoku");
         }
-        //check of row
-        for(int[] line : sudoku) {
-            if (!lineChecker(line)) {
-                return false;
-            }
+
+        //Stream check of row
+        if (!Stream.of(sudoku)
+                .allMatch(SudokuCheck::lineChecker)) {
+        System.out.println("Row error!");
+            return false;
         }
-        //check of column
-        for(int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                tmp[j] = sudoku[j][i];
-            }
-            if (!lineChecker(tmp)) {
-                return false;
-            }
+
+        //Stream check of column
+        if (!Stream.iterate(0,x -> x < 9, x -> x+1)
+                .map(i -> IntStream.range(0,9)
+                        .map(j -> sudoku[j][i]).toArray())
+                .allMatch(SudokuCheck::lineChecker)) {
+            System.out.println("Column error!");
+            return false;
         }
-        //check of square
-        for(int r = 0; r < 3; r++) {
-            for(int c = 0; c < 3; c++) {
-                for (int i = r * 3, i2 = 0; i < r * 3 + 3; i++, i2++) {
-                    for (int j = c * 3, j2 = 0; j < c * 3 + 3; j++, j2++) {
-                        tmp[i2*3 + j2] = sudoku[i][j];
-                    }
-                }
-                if(!lineChecker(tmp)) {
-                    return false;
-                }
-            }
+
+        //Stream check of square
+        if(!Stream.of(0,1,2)
+                .flatMap(r -> Stream.of(0,1,2)
+                        .map(c -> IntStream.iterate(3*r, i -> i < r*3+3,i -> i+1)
+                                .flatMap(i -> IntStream.iterate(3*c, j -> j < c*3+3,j -> j+1)
+                                        .map(j -> sudoku[i][j]))
+                                .toArray()))
+                .allMatch(SudokuCheck::lineChecker)) {
+            System.out.println("Square error!");
+            return false;
         }
         return true;
     }

@@ -17,35 +17,18 @@ public class BracketsChecker {
         if (matcher.find()) {
             throw new IllegalArgumentException("String contains not only brackets");
         }
-
-        char[] charArr = str.toCharArray();
-
-        if(charArr.length%2 != 0) {
+        if(str.length()%2 !=0) {
             return false;
         }
 
-        Stack<Character> validator = new Stack<>();
+        Stack<Integer> validator = new Stack<>();
 
-        for(char ch : charArr) {
-            switch (ch) {
-                case '(', '{', '[' -> validator.push(ch);
-                case ')' -> {
-                    if (((validator.empty()) || (validator.pop() != '('))) {
-                        return false;
-                    }
-                }
-                case '}' -> {
-                    if (((validator.empty()) || (validator.pop() != '{'))) {
-                        return false;
-                    }
-                }
-                case ']' -> {
-                    if (((validator.empty()) || (validator.pop() != '['))) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return (validator.empty());
+        return str.chars().allMatch(c -> switch(c) {
+            case '(', '{', '[' -> validator.push(c) != 0;
+            case ')' -> (!validator.empty() && validator.pop() == '(');
+            case '}' -> (!validator.empty() && validator.pop() == '{');
+            case ']' -> (!validator.empty() && validator.pop() == '[');
+            default -> false;
+        }) && validator.empty();
     }
 }

@@ -1,5 +1,7 @@
 package firsttheme;
 
+import java.util.stream.Stream;
+
 public class TreeNode {
     int val;
     TreeNode left;
@@ -21,19 +23,14 @@ public class TreeNode {
 
 class TreeSolution {
     public static int maxDepth(TreeNode root) {
-        if(root == null) {
-            return 0;
-        }
-
-        int dLeft = maxDepth(root.left);
-        int dRight = maxDepth(root.right);
-
-        if(dLeft > dRight) {
-            return dLeft + 1;
-        }
-        else {
-            return dRight + 1;
-        }
+        return Stream.of(root).mapToInt(r -> {
+            if (root == null) {
+                return 0;
+            }
+            int dLeft = maxDepth(root.left);
+            int dRight = maxDepth(root.right);
+            return (dLeft > dRight) ? (dLeft + 1) :  (dRight + 1);
+        }).findFirst().getAsInt();
     }
 }
 

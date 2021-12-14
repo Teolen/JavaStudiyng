@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.junit.Assert.*;
 
@@ -15,7 +16,7 @@ public class SolutionTest {
     @Test
     public void removeNthFromEndTest() {
         List<List<Integer>> expected = new ArrayList<>();
-        List<List<Integer>> actual = new ArrayList<>();
+        List<List<Integer>> actual;
 
         int[][] arrays = {
                 {1,2,3,4,5},
@@ -31,11 +32,9 @@ public class SolutionTest {
         expected.add(Arrays.asList(1,3,5,9,11));
         expected.add(Arrays.asList(5,3,2,1));
 
-        ListNode head;
-        for(int i = 0; i < 5; i++) {
-            head = createListOfNodes(arrays[i]);
-            actual.add(nodeListToArrayList(removeNthFromEnd(head, ns[i])));
-        }
+        actual = Stream.of(0,1,2,3,4)
+                .map(i -> nodeListToArrayList(removeNthFromEnd(createListOfNodes(arrays[i]),ns[i])))
+                .toList();
 
         assertEquals(expected,actual);
     }
